@@ -140,13 +140,105 @@
 
 ### Debugging Section
 
-##### 1. CrashLoopBackOff – Wrong Command
+#### 1. CrashLoopBackOff – Wrong Command
 ```
 command: ["python", "main.py"] → file is app.py.
 ```
+##### Run 
+```
+kubectl get pods -n mansi
+```
+##### It will show CrashLoopBackoff
+```
+ backend-***CrashLoopBackoff
+```
 
+##### check logs
+```
+kubectl logs backend-** -n mansi
+```
+```
+Errors
+```
+##### Because actual application file is app.py change it 
 
+```
+command: ["python", "app.py"]
+```
+```
+kubectl apply -f backend-deployment.yaml
+```
 
+##### Here backend pod become runnning, problem solve.
 
+#### 2. Ingress Route Failure
 
+Ingress routes /backend but backend listens on /api
 
+##### Browser showes error then check ingress
+##### Frontend call wrong path. Ingress mapped /backend -> backend-service,But backend only support /api
+##### Change the path
+```
+path: /backend
+```
+```
+path: /api
+```
+Re-applie
+```
+kubectl apply -f ingress.yaml
+```
+##### Frontend sucessfully communicate with backend.
+
+#### 3. Terraform Backend Error
+
+Missing bucket/container name.
+
+```
+terraform apply
+```
+shows
+```
+errors
+```
+###### Check S3 bucket and DynamoDB is created or not in backend.tf
+
+```
+aws s3 ls
+```
+```
+aws dynamodb list-tables
+```
+##### Table did not exist,this problem arrives when resources are not created. so Terraform could not store in that
+##### Create S3 bucket and DynamoDB table
+```
+aws s3api create-bucket \
+  --bucket mansi-terraform-state-bucket \
+  --region ap-southeast-1 \
+  --create-bucket-configuration LocationConstraint=ap-southeast-1
+```
+
+```
+aws dynamodb create-table \
+  --table-name terraform-db \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST
+```
+
+```
+terraform init -reconfigure
+terraform apply
+```
+##### Terraform stored completed.
+
+#### 4. FluentBit Log Path Bug
+
+Incorrect path: *.logx instead of *.log.
+
+##### Here the problem is logx which is wrong path 
+##### Correct the path 
+```
+path /var/log/containers/*.log
+```
+##### Re-apply this will solve the bug
