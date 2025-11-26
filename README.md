@@ -40,10 +40,10 @@
 │
 └── README.md
 ```
-###🚀 AWS - VPC, EKS, IAM, EC2, ELB
-###🧱 Terraform - Iac for full AWS infra
-###🐳 Docker - Container images for backend and frontend
-###🌐  Kubernetes - Deplyment,ingress
-###📈 Prometheus - metrics collection
-###📊Grafana - Dashboard for metrics/logs
-###🧾 Loki - Log aggregation
+### 🚀 AWS - VPC, EKS, IAM, EC2, ELB
+### 🧱 Terraform - Iac for full AWS infra
+### 🐳 Docker - Container images for backend and frontend
+### 🌐  Kubernetes - Deplyment,ingress
+### 📈 Prometheus - metrics collection
+### 📊Grafana - Dashboard for metrics/logs
+### 🧾 Loki - Log aggregation
