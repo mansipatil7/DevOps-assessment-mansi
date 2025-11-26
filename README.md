@@ -1,6 +1,8 @@
 # DevOps-assessment-mansi
 ## Final project
 ### Project Structure
+```
+
 DevOps-assessment-mansi/
 │
 ├── terraform/               
@@ -37,3 +39,4 @@ DevOps-assessment-mansi/
 │   └── dashboards/
 │
 └── README.md
+```
