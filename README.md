@@ -3,7 +3,7 @@
 ### Project Structure
 ```
 
-DevOps-assessment-mansi/
+📦DevOps-assessment-mansi/
 │
 ├── terraform/               
 │   ├── main.tf
@@ -25,18 +25,25 @@ DevOps-assessment-mansi/
 │
 ├── k8s/                      
 │   ├── backend-deployment.yaml
-│   ├── backend-service.yaml
 │   ├── frontend-deployment.yaml
-│   ├── frontend-service.yaml
-│   ├── configmap.yaml
-│   ├── secret.yaml
 │   └── ingress.yaml
+│   
+│   
+│   
+│   
 │
 ├── monitoring/
 │   ├── grafana/
 │   ├── loki/
-│   ├── prom-stack/
-│   └── dashboards/
+│   └── prometheus/
+│   
 │
 └── README.md
 ```
+###🚀 AWS - VPC, EKS, IAM, EC2, ELB
+###🧱 Terraform - Iac for full AWS infra
+###🐳 Docker - Container images for backend and frontend
+###🌐  Kubernetes - Deplyment,ingress
+###📈 Prometheus - metrics collection
+###📊Grafana - Dashboard for metrics/logs
+###🧾 Loki - Log aggregation
